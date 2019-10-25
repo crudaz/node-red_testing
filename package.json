@@ -1,0 +1,19 @@
+{
+  "name": "jest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --watch",
+    "test:debug": "node --inspect-brk=0.0.0.0 node_modules/.bin/jest --runInBand"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "node-red":"^0.18.4",
+    "node-red-node-test-helper": "^0.1.8"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "should": "^13.2.3"
+  }
+}

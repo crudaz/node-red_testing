@@ -1,0 +1,382 @@
+[
+    {
+        "id": "70acf9e.442a608",
+        "type": "tab",
+        "label": "APIRest",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "c91b1b86.e9f618",
+        "type": "http in",
+        "z": "70acf9e.442a608",
+        "name": "",
+        "url": "/users",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 80,
+        "y": 60,
+        "wires": [
+            [
+                "379d426f.c140fe"
+            ]
+        ]
+    },
+    {
+        "id": "a644227d.48e6d",
+        "type": "template",
+        "z": "70acf9e.442a608",
+        "name": "users",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "users = [\n    { \"id\": \"1\", \"name\": \"user1\", \"email\": \"user1@gmail.com\" },\n    { \"id\": \"2\", \"name\": \"user2\", \"email\": \"user2@gmail.com\" },\n    { \"id\": \"3\", \"name\": \"user3\", \"email\": \"user3@gmail.com\" },\n    { \"id\": \"4\", \"name\": \"user4\", \"email\": \"user4@gmail.com\" },\n];",
+        "output": "str",
+        "x": 370,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b19fdbbd.8ca578",
+        "type": "http response",
+        "z": "70acf9e.442a608",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "99d8f35e.eb9f5",
+        "type": "http in",
+        "z": "70acf9e.442a608",
+        "name": "",
+        "url": "/newuser",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 240,
+        "wires": [
+            [
+                "55544b5a.314154"
+            ]
+        ]
+    },
+    {
+        "id": "abb02b73.afdbd8",
+        "type": "template",
+        "z": "70acf9e.442a608",
+        "name": "page",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "insert: {{payload.id}} - {{payload.name}} - {{payload.email}}",
+        "output": "str",
+        "x": 490,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d268cc53.ef56e",
+        "type": "http response",
+        "z": "70acf9e.442a608",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "x": 690,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "55544b5a.314154",
+        "type": "function",
+        "z": "70acf9e.442a608",
+        "name": "",
+        "func": "msg.payload = msg.req.body;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 290,
+        "y": 240,
+        "wires": [
+            [
+                "43780064.5fbdc"
+            ]
+        ]
+    },
+    {
+        "id": "ae240bb0.6033f8",
+        "type": "http in",
+        "z": "70acf9e.442a608",
+        "name": "",
+        "url": "/user",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 420,
+        "wires": [
+            [
+                "754f972b.ce3358"
+            ]
+        ]
+    },
+    {
+        "id": "39ac808e.e1a27",
+        "type": "template",
+        "z": "70acf9e.442a608",
+        "name": "page",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "update: {{payload.id}} - {{payload.name}} - {{payload.email}}",
+        "output": "str",
+        "x": 510,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d942a69d.bb8a28",
+        "type": "http response",
+        "z": "70acf9e.442a608",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "x": 730,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "754f972b.ce3358",
+        "type": "function",
+        "z": "70acf9e.442a608",
+        "name": "",
+        "func": "msg.payload = msg.req.body;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 420,
+        "wires": [
+            [
+                "f9644e80.473bf"
+            ]
+        ]
+    },
+    {
+        "id": "5f24e47f.7c5b5c",
+        "type": "http in",
+        "z": "70acf9e.442a608",
+        "name": "",
+        "url": "/user/:id",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 600,
+        "wires": [
+            [
+                "2a9e694a.2de046"
+            ]
+        ]
+    },
+    {
+        "id": "f302e6b7.338978",
+        "type": "template",
+        "z": "70acf9e.442a608",
+        "name": "page",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "delete: {{payload.id}} !",
+        "output": "str",
+        "x": 510,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7d30f7a2.b01588",
+        "type": "http response",
+        "z": "70acf9e.442a608",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "x": 750,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "2a9e694a.2de046",
+        "type": "function",
+        "z": "70acf9e.442a608",
+        "name": "",
+        "func": "msg.payload = msg.req.params;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 330,
+        "y": 620,
+        "wires": [
+            [
+                "e24938ab.0c5398"
+            ]
+        ]
+    },
+    {
+        "id": "379d426f.c140fe",
+        "type": "mongodb2 in",
+        "z": "70acf9e.442a608",
+        "service": "_ext_",
+        "configNode": "cdebb4d7.75e848",
+        "name": "mongodb2",
+        "collection": "users",
+        "operation": "find.toArray",
+        "x": 330,
+        "y": 100,
+        "wires": [
+            [
+                "b19fdbbd.8ca578"
+            ]
+        ]
+    },
+    {
+        "id": "43780064.5fbdc",
+        "type": "mongodb2 in",
+        "z": "70acf9e.442a608",
+        "service": "_ext_",
+        "configNode": "cdebb4d7.75e848",
+        "name": "mongodb2",
+        "collection": "users",
+        "operation": "insert",
+        "x": 490,
+        "y": 260,
+        "wires": [
+            [
+                "d268cc53.ef56e",
+                "74afe2b.167041c"
+            ]
+        ]
+    },
+    {
+        "id": "f9644e80.473bf",
+        "type": "mongodb2 in",
+        "z": "70acf9e.442a608",
+        "service": "_ext_",
+        "configNode": "cdebb4d7.75e848",
+        "name": "mongodb2",
+        "collection": "users",
+        "operation": "update",
+        "x": 510,
+        "y": 440,
+        "wires": [
+            [
+                "d942a69d.bb8a28",
+                "61b9404b.ebb99"
+            ]
+        ]
+    },
+    {
+        "id": "e24938ab.0c5398",
+        "type": "mongodb2 in",
+        "z": "70acf9e.442a608",
+        "service": "_ext_",
+        "configNode": "cdebb4d7.75e848",
+        "name": "mongodb2",
+        "collection": "users",
+        "operation": "deleteOne",
+        "x": 510,
+        "y": 640,
+        "wires": [
+            [
+                "7d30f7a2.b01588"
+            ]
+        ]
+    },
+    {
+        "id": "eae60179.6193f",
+        "type": "catch",
+        "z": "70acf9e.442a608",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 540,
+        "y": 740,
+        "wires": [
+            [
+                "a9325074.72f1b"
+            ]
+        ]
+    },
+    {
+        "id": "a9325074.72f1b",
+        "type": "debug",
+        "z": "70acf9e.442a608",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 780,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "61b9404b.ebb99",
+        "type": "debug",
+        "z": "70acf9e.442a608",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 720,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "74afe2b.167041c",
+        "type": "debug",
+        "z": "70acf9e.442a608",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 700,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "cdebb4d7.75e848",
+        "type": "mongodb2",
+        "z": "",
+        "uri": "mongodb://localhost:27017/yuxi",
+        "name": "",
+        "options": "",
+        "parallelism": "-1"
+    }
+]
